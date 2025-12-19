@@ -122,6 +122,13 @@ body {
     color: var(--color-black);
     margin-bottom: var(--spacing-8);
 }
+.section-title1 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+    color: var(--color-black);
+    margin-bottom: var(--spacing-8);
+}
 
 .container {
     width: 100%;
@@ -212,7 +219,7 @@ body {
 .hero-label-left,
 .hero-label-center,
 .hero-label-right {
-    font-family: "Gravesend Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 19px;
     font-weight: 500;
     color: black;
@@ -347,7 +354,7 @@ body {
 }
 
 .services-subtitle {
-    font-family: Poppins;
+    font-family: "Poppins";
     font-weight: 400;
     font-size: 18px;
     line-height: 110%;
@@ -514,8 +521,17 @@ body {
 
 .stat-number {
     font-size:72px;
-    font-weight: 700;
-    font-family: "Gravesend Sans";
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    color: var(--color-white);
+    line-height: var(--line-height-tight);
+    display: block;
+    margin-bottom: var(--spacing-1);
+}
+.stat-number1 {
+    font-size:72px;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
     color: var(--color-white);
     line-height: var(--line-height-tight);
     display: block;
@@ -537,7 +553,7 @@ body {
     font-size: 16px;
     color: rgba(255, 255, 255, 0.85);
     line-height: var(--line-height-normal);
-    font-family: "Gravesend Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
 
 
@@ -738,7 +754,7 @@ body {
 }
 
 .thumbnail {
-    width: 119px;
+    width: 120px;
     height: 78px;
     flex-shrink: 0;
     border-radius: var(--radius-small);
@@ -769,7 +785,7 @@ body {
     margin-top: var(--spacing-10);
     overflow-x: auto;
     scroll-behavior: smooth;
-    padding-bottom: var(--spacing-4);
+    padding-bottom: var(--spacing-20);
     scrollbar-width: thin;
     scrollbar-color: var(--color-primary) transparent;
 }
@@ -791,18 +807,11 @@ body {
     background-color: var(--color-testimonial-bg);
     border-radius: var(--radius-big);
     padding: var(--spacing-8);
+    padding-bottom: var(--spacing-6);
     max-width: 350px;
-    height:180px;
+    height:267px;
     flex-shrink: 0;
-    opacity: 0.6;
-    transition: opacity 0.3s ease, transform 0.3s ease;
     cursor: pointer;
-}
-
-.testimonial-card:hover,
-.testimonial-card.active {
-    opacity: 1;
-    transform: scale(1.02);
 }
 
 .testimonial-author {
@@ -813,9 +822,10 @@ body {
 }
 
 .testimonial-text {
-    font-size: var(--font-size-sm);
-    color: var(--color-black);
+    font-size: 16px;
+    color: black;
     line-height: var(--line-height-relaxed);
+    margin-bottom: 5px;
 }
 
 .footer {
@@ -858,18 +868,16 @@ body {
 }
 
 @media (max-width: 767px) {
-  .services-title-container .section-title::before {
-    content: none !important;
-    display: none !important;
+   .section-title {
+    font-size:0px;
   }
   .services-section {
   position: relative;
   z-index: 2;
   margin-bottom: -80px;
 }
-  
-
-  .services-title-container .section-title {
+ .section-title::before {
+    content:"All Services";
     font-size: 52px !important;
     line-height: 1 !important;
     font-weight: 600 !important;
@@ -1019,6 +1027,18 @@ body {
         font-weight: 300 !important;
         color: var(--color-primary);
     }
+    .stat-number1 {
+    font-size: 0;              
+    }
+    .stat-number1::before {
+    content: "1K+";
+    display: block;        
+    font-size: 50px;
+    font-weight: 300;
+    color: var(--color-primary);
+    line-height: 1;
+    }
+
     .stat-label{
         font-size: 18px !important;
         margin-bottom: 4px !important;
@@ -2096,19 +2116,25 @@ body.menu-open {
     }
     
     .testimonial-card {
-        padding: 16px;
+        padding: 10px;
         border-radius: 10px;
         min-width: 280px;
+        height: 194px;
+        padding-bottom: 40px;
         flex-shrink: 0;
     }
     
     .testimonial-author {
         font-size: 14px;
+        padding-top: 10px;;
         margin-bottom: 6px;
     }
     
     .testimonial-text {
-        font-size: 12px;
+        font-size: 16px;
+        color:#000000;
+        margin-bottom: auto ;
+        padding-top: 16px;
         line-height: 1.5;
     }
     
@@ -2265,7 +2291,7 @@ body.menu-open {
     .services-section,
     .beauty-section,
     .testimonials-section {
-        padding-left: 12px;
+        padding-left: 8px;
         padding-right: 12px;
     }
     
