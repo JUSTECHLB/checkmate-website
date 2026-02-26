@@ -760,18 +760,207 @@ body {
     border-radius: var(--radius-small);
     overflow: hidden;
     cursor: pointer;
-    transition: transform var(--transition-base), opacity var(--transition-base);
+    transition: transform var(--transition-base), opacity var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    border: 2px solid transparent;
+    background-color: var(--color-white);
+    padding: 0;
+    display: block;
+    position: relative;
+    isolation: isolate;
 }
 
-.thumbnail:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
+.thumbnail:hover,
+.thumbnail:focus-visible {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+.thumbnail:focus-visible {
+    outline: none;
+    border-color: rgba(19, 119, 123, 0.5);
+    box-shadow: 0 0 0 3px rgba(19, 119, 123, 0.15);
+}
+
+.thumbnail.active {
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 18px rgba(2, 12, 27, 0.18);
+    opacity: 1;
 }
 
 .thumbnail-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.thumbnail-stack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--radius-small) - 2px);
+    overflow: hidden;
+}
+
+.thumbnail-stack .thumbnail-image-base,
+.thumbnail-stack .thumbnail-image-overlay {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumbnail-image-base {
+    filter: saturate(0.9);
+}
+
+.thumbnail-image-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    transition: opacity 320ms ease, transform 320ms ease;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.thumbnail::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: calc(var(--radius-small) - 10px);
+    background: linear-gradient(135deg, rgba(19, 119, 123, 0.18), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 280ms ease;
+    pointer-events: none;
+}
+
+.thumbnail:hover::before,
+.thumbnail:focus-visible::before {
+    opacity: 1;
+}
+
+.thumbnail:hover .thumbnail-image-overlay,
+.thumbnail:focus-visible .thumbnail-image-overlay {
+    opacity: 0;
+    transform: scale(1.05);
+}
+
+.booking-section {
+    padding: var(--spacing-20) 0;
+    background-color: var(--color-background);
+    scroll-margin-top: 100px;
+}
+
+.booking-wrapper {
+    background-color: var(--color-white);
+    border-radius: var(--radius-big);
+    padding: var(--spacing-12);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-12);
+    box-shadow: var(--shadow-lg);
+    align-items: start;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: var(--font-size-sm);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-2);
+}
+
+.booking-text {
+    font-size: var(--font-size-base);
+    color: var(--color-gray-700);
+    margin-bottom: var(--spacing-6);
+    max-width: 520px;
+}
+
+.booking-highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    padding: 0;
+    margin: 0;
+}
+
+.booking-highlights li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-black);
+}
+
+.booking-highlights li::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.booking-form {
+    background-color: var(--color-background);
+    border-radius: var(--radius-big);
+    padding: var(--spacing-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+    box-shadow: inset 0 0 0 1px rgba(19, 119, 123, 0.08);
+}
+
+.form-field label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-2);
+    color: var(--color-gray-700);
+}
+
+.form-field input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: var(--radius-small);
+    border: 1px solid var(--color-gray-200);
+    font-size: var(--font-size-base);
+    background-color: var(--color-white);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(19, 119, 123, 0.15);
+}
+
+.booking-submit {
+    width: 100%;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+}
+
+.booking-hint {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    margin-top: -4px;
+}
+
+.booking-status {
+    min-height: 24px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    margin-top: var(--spacing-2);
+}
+
+.booking-status.success {
+    color: var(--color-primary);
+}
+
+.booking-status.error {
+    color: #b42318;
 }
 
 .testimonials-section {
@@ -2258,6 +2447,32 @@ body.menu-open {
         height: 100%;
         max-height: 100%;
         border-radius: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .booking-wrapper {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-10);
+    }
+}
+
+@media (max-width: 600px) {
+    .booking-section {
+        padding: var(--spacing-12) var(--spacing-2);
+    }
+
+    .booking-wrapper {
+        padding: var(--spacing-8);
+        gap: var(--spacing-8);
+    }
+
+    .booking-form {
+        padding: var(--spacing-6);
+    }
+
+    .booking-highlights {
+        gap: var(--spacing-1);
     }
 }
 
