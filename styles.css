@@ -1989,10 +1989,11 @@ body.menu-open {
     
     .services-title-container .section-title::before {
         content: "All ";
-        font-size: 22px;
+        font-size: 52px;
         font-weight: 600;
         color: var(--color-black);
         line-height: 1.2;
+        font-family: var(--font-family);
     }
     
     .services-title-container .section-title .text-green {
